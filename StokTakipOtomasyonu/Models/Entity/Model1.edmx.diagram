@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0aa342553c4f49eb81a784948fc37fed" Name="Diagram1">
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Basket" Width="1.5" PointX="7.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Brands" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Categories" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Customers" Width="1.5" PointX="10" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Products" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Sales" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokOtomasyonDBModel.Units" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Basket_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Brands_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Products_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Products_Units" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Sales_Products" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

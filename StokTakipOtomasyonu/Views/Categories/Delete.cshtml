@@ -1,0 +1,36 @@
+﻿@model StokTakipOtomasyonu.Models.Entity.Categories
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Category</h2>
+
+<div class="container">
+    <h2>Do you want to delete selected category?</h2>
+    
+    @using (Html.BeginForm("Delete_Save", "Categories"))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(x=>x.ID)
+            @Html.LabelFor(x=>x.Category)
+            @Html.DisplayFor(x=>x.Category,new {@class="from-control"}) 
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Description)
+            @Html.DisplayFor(x => x.Description, new { @class = "from-control" })
+
+        </div>
+        <div>
+            <br />
+            <button class="btn btn-danger">
+                Delete Category
+            </button>
+            <a href="/Categories/Index/">
+                Back to the Categories Page
+            </a>
+        </div>
+
+    }
+</div>
+

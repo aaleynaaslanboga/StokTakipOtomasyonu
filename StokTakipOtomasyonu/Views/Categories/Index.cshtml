@@ -1,0 +1,56 @@
+﻿@using StokTakipOtomasyonu.Models.Entity
+@model List<StokTakipOtomasyonu.Models.Entity.Categories>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align: center; color: #6B5252 ">CATEREGORIES</h2>
+<br />
+<div><a href="/Categories/Add/" class="btn" style="background-color:#031A3D;"><i class="fa fa-plus" style="color: #E3DBDB ">  ADD New Category </i></a></div>
+<br />
+<div>
+    <br />
+    <table class="table table-bordered" style="border-color: #6B5252 ">
+        <thead>
+            <tr style="text-align: center; color: #6B5252;font-weight:bold">
+                @*<td>
+                    ID
+                </td>*@
+                <td>
+                    CATEGORY
+                </td>
+                <td>
+                    DESCRIPTION
+                </td>
+                <td>
+                    PROCESSES
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @item.ID
+                    </td>*@
+                    <td>
+                        @item.Category
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td style="text-align:center">
+                        <a href="/Categories/Delete/@item.ID" class="btn" style="background-color:#A4826D"><i class="fa fa-trash-o" style="color: #F7E6DA" title="Delete"></i></a>
+                        <a href="/Categories/Update/@item.ID" class="btn" style="background-color:#A4826D"><i class="fa fa-edit" style="color: #F7E6DA" title="Update"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,33 @@
+﻿@model StokTakipOtomasyonu.Models.Entity.Units
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Unit</h2>
+
+<div class=" container">
+    @using (Html.BeginForm("Delete_Save", "Units"))
+    {
+        <div class="form-group">
+            @Html.HiddenFor(x => x.ID)
+            @Html.LabelFor(x => x.Unit)
+            @Html.DisplayFor(x => x.Unit, new { @class = "from-control" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Description)
+            @Html.DisplayFor(x => x.Description, new { @class = "from-control" })
+
+        </div>
+        <div>
+            <button class="btn btn-danger">
+                Delete Unit
+            </button>
+            <a href="/Units/Unit/">
+                Back to the Units Page
+            </a>
+        </div>
+    }
+
+</div>
+

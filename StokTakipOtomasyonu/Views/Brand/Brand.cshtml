@@ -1,0 +1,50 @@
+﻿@model List<StokTakipOtomasyonu.Models.Entity.Brands>
+@{
+    ViewBag.Title = "Brand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align: center; color: #6B5252 ">BRANDS</h2>
+<br />
+<div><a href="/Brand/Add/" class="btn" style="background-color:#031A3D;"><i class="fa fa-plus" style="color: #E3DBDB ">  ADD New Brand </i></a></div>
+<br />
+
+<table class="table">
+    <thead style="background-color:aliceblue">
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Processes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Categories.Category
+                </td>
+                <td>
+                    @item.Brand
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    <a href="#" class="btn" style="background-color:#A4826D"><i class="fa fa-trash-o" style="color: #F7E6DA" title="Delete"></i></a>
+                    <a href="#" class="btn" style="background-color:#A4826D"><i class="fa fa-edit" style="color: #F7E6DA" title="Update"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

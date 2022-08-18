@@ -1,0 +1,34 @@
+﻿@model StokTakipOtomasyonu.Models.Entity.Units
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Unit</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Add", "Units", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.Unit)
+            @Html.TextBoxFor(x => x.Unit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Unit, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Description)
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+        </div>
+        <br />
+
+        <div class="form-group">
+            <button class="btn btn-success">Add Unit</button>
+        </div>
+        <br />
+
+    }
+
+
+</div>

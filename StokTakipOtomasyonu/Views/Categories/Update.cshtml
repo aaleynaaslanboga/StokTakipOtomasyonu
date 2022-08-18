@@ -1,0 +1,34 @@
+﻿@model StokTakipOtomasyonu.Models.Entity.Categories
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update Selected Category</h2>
+
+<div class="container">
+    <form action="/Categories/Update_Save/">
+        @Html.HiddenFor(x => x.ID)  <br />
+        <div class="form-group">
+            <b>Category</b>
+            <br />
+            <br />
+            @Html.TextAreaFor(x => x.Category, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <b>Description</b>
+            <br />
+            <br />
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+        </div>
+        <br />
+        <div class="form-group">
+            <button class="btn btn-success"> Update Category</button>
+        </div>
+    </form>
+
+    
+
+</div>
