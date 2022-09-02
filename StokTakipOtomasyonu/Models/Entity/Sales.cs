@@ -27,5 +27,6 @@ namespace StokTakipOtomasyonu.Models.Entity
         public System.DateTime Time { get; set; }
     
         public virtual Products Products { get; set; }
+        public virtual Basket Basket { get; set; }
     }
 }

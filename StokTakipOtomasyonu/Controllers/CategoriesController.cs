@@ -15,29 +15,33 @@ namespace StokTakipOtomasyonu.Controllers
         {
             return View(db.Categories.ToList());
         }
-        public ActionResult Add() 
+        [HttpGet]
+        public ActionResult Add()
         {
-            return View();
+            return View("Add");
         }
-        public ActionResult Add2(Categories parameter)
+        [HttpPost]
+        public ActionResult Add(Categories p)
         {
             if (!ModelState.IsValid)
             {
                 return View("Add");
             }
-            db.Categories.Add(parameter);
+            db.Categories.Add(p);
             db.SaveChanges();
-            return RedirectToAction("Index"); // return the lıst page after adding
+            return RedirectToAction("Index");
         }
-        public ActionResult Update(Categories parameter)
+
+
+        public ActionResult Update(int ID) // the page dısplay when clıck the update button
         {
-            var model = db.Categories.Find(parameter.ID);
+            var model = db.Categories.Find(ID);
             if (model == null) return HttpNotFound(); // Redirect to error page
             return View(model);
             //Index page link
         }
 
-        public ActionResult Update_Save(Categories parameter)
+        public ActionResult Update_Save(Categories parameter) // Function method when the user make any change in update page (Form Actıon)
         {
             db.Entry(parameter).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();

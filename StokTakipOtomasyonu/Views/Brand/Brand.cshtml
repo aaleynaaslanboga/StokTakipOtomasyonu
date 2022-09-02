@@ -8,43 +8,44 @@
 <br />
 <div><a href="/Brand/Add/" class="btn" style="background-color:#031A3D;"><i class="fa fa-plus" style="color: #E3DBDB ">  ADD New Brand </i></a></div>
 <br />
-
-<table class="table">
-    <thead style="background-color:aliceblue">
-        <tr>
-            <th>
-                Category
-            </th>
-            <th>
-                Brand
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Processes
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Categories.Category
-                </td>
-                <td>
-                    @item.Brand
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                <td>
-                    <a href="#" class="btn" style="background-color:#A4826D"><i class="fa fa-trash-o" style="color: #F7E6DA" title="Delete"></i></a>
-                    <a href="#" class="btn" style="background-color:#A4826D"><i class="fa fa-edit" style="color: #F7E6DA" title="Update"></i></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+<div>
+    <br />
+    <table class="table table-bordered" style="border-color: #6B5252 ">
+        <thead style="background-color:aliceblue; text-align:center">
+            <tr style="text-align: center; color: #6B5252">
+                <th>
+                    CATEGORY
+                </th>
+                <th>
+                    BRAND
+                </th>
+                <th>
+                    DESCRIPTION
+                </th>
+                <th>
+                    PROCESSES
+                </th>
+                </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => @item.Categories.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Description)
+                    </td>
+                    <td align="center">
+                        <a href="/Brand/Delete/@item.ID" class="btn" style="background-color:#A4826D"><i class="fa fa-trash-o" style="color: #F7E6DA" title="Delete"></i></a>
+                        <a href="/Brand/Update/@item.ID" class="btn" style="background-color:#A4826D"><i class="fa fa-edit" style="color: #F7E6DA" title="Update"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

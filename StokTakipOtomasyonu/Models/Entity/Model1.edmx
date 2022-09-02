@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StokOtomasyonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StokOtomasyonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="ID" />
@@ -65,6 +65,7 @@
           <Property Name="BarcodNo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PurchasePrice" Type="decimal" Precision="28" Scale="2" Nullable="false" />
           <Property Name="SalePrice" Type="decimal" Precision="28" Scale="2" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="28" Scale="2" Nullable="false" />
           <Property Name="Tax" Type="int" Nullable="false" />
           <Property Name="UnitID" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
@@ -154,6 +155,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sales_Basket">
+          <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="BasketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sales_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -194,13 +207,16 @@
             <End Role="Units" EntitySet="Units" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sales_Basket" Association="Self.FK_Sales_Basket">
+            <End Role="Basket" EntitySet="Basket" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sales_Products" Association="Self.FK_Sales_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StokOtomasyonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -222,6 +238,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Basket_Products" FromRole="Basket" ToRole="Products" />
+          <NavigationProperty Name="Sales" Relationship="StokOtomasyonDBModel.FK_Sales_Basket" FromRole="Basket" ToRole="Sales" />
         </EntityType>
         <EntityType Name="Brands">
           <Key>
@@ -278,6 +295,7 @@
           <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="Units" Relationship="Self.FK_Products_Units" FromRole="Products" ToRole="Units" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Products" FromRole="Products" ToRole="Sales" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="28" Scale="2" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -295,6 +313,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Sales_Products" FromRole="Sales" ToRole="Products" />
+          <NavigationProperty Name="Basket" Relationship="StokOtomasyonDBModel.FK_Sales_Basket" FromRole="Sales" ToRole="Basket" />
         </EntityType>
         <EntityType Name="Units">
           <Key>
@@ -409,7 +428,23 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sales_Basket" Association="StokOtomasyonDBModel.FK_Sales_Basket">
+            <End Role="Basket" EntitySet="Basket" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Sales_Basket">
+          <End Type="StokOtomasyonDBModel.Basket" Role="Basket" Multiplicity="1" />
+          <End Type="StokOtomasyonDBModel.Sales" Role="Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="BasketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -472,6 +507,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="StokOtomasyonDBModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="BrandID" ColumnName="BrandID" />

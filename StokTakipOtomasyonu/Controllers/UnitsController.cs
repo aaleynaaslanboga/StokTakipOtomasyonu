@@ -15,7 +15,7 @@ namespace StokTakipOtomasyonu.Controllers
         {
             return View(db.Units.ToList());
         }
-        //public ActionResult UnitMery()
+        //public ActionResult UnitAley()
         //{
         //    ViewBag.message = "Hello WOrld22";
         //    ViewBag.Title = "Hello WOrld";
@@ -40,9 +40,9 @@ namespace StokTakipOtomasyonu.Controllers
             return RedirectToAction("Unit");
         }
 
-        public ActionResult Update(Units parameter)
+        public ActionResult Update(int ID)
         {
-            var model = db.Units.Find(parameter.ID);
+            var model = db.Units.Find(ID);
             if (model == null) return HttpNotFound(); // Redirect to error page
             return View(model);
             //Index page link
@@ -54,7 +54,6 @@ namespace StokTakipOtomasyonu.Controllers
             db.SaveChanges();
             return RedirectToAction("Unit");
         }
-
         public ActionResult Delete(Units parameter)
         {
             var model = db.Units.Find(parameter.ID);

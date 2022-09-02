@@ -18,6 +18,7 @@
         <AssociationConnector Association="StokOtomasyonDBModel.FK_Products_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="StokOtomasyonDBModel.FK_Products_Units" ManuallyRouted="false" />
         <AssociationConnector Association="StokOtomasyonDBModel.FK_Sales_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="StokOtomasyonDBModel.FK_Sales_Basket" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

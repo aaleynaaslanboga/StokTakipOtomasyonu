@@ -14,6 +14,12 @@ namespace StokTakipOtomasyonu.Models.Entity
     
     public partial class Basket
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Basket()
+        {
+            this.Sales = new HashSet<Sales>();
+        }
+    
         public int ID { get; set; }
         public int ProductID { get; set; }
         public int CategoryID { get; set; }
@@ -29,5 +35,7 @@ namespace StokTakipOtomasyonu.Models.Entity
         public System.DateTime Time { get; set; }
     
         public virtual Products Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sales> Sales { get; set; }
     }
 }

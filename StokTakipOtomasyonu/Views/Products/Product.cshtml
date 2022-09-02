@@ -1,0 +1,80 @@
+﻿@model List<StokTakipOtomasyonu.Models.Entity.Products>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align: center; color: #6B5252">PRODUCTS</h2>
+<br />
+<div><a href="/Products/Add/" class="btn" style="background-color:#031A3D;"><i class="fa fa-plus" style="color: #E3DBDB">  ADD New Product </i></a></div>
+<br />
+<div>
+    <br />
+    <table  class="table table-bordered" style="border-color: #6B5252 ">
+        <thead style="background-color:aliceblue; text-align:center">
+            <tr style="text-align: center; color: #6B5252">
+                <th>CATEGORY</th>
+                <th>BRAND</th>
+                <th>PRODUCT NAME</th>
+                <th>BARCODE NO</th>
+                <th>PURCHASE PRICE</th>
+                <th>SALE PRICE</th>
+                <th>AMOUNT</th>
+                <th>UNIT</th>
+                <th>TAX</th>
+                <th>DATE</th>
+                <th>DESCRIPTION</th>
+                <th>PROCESSES</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => item.Categories.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Brands.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.BarcodNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.PurchasePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.SalePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x=> item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x=>item.Units.Unit)
+                    </td>
+                    <td>
+                        %@Html.DisplayFor(x => item.Tax)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.Description)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.ActionLink("Delete", "", new { ID = item.ID }, new { @class = "fa fa-trash-o" })
+                        <br />
+                        @Html.ActionLink("Update", "", new { ID = item.ID }, new { @class = "fa fa-edit" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

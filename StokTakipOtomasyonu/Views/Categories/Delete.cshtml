@@ -13,11 +13,11 @@
     {
         <div class="form-group">
             @Html.HiddenFor(x=>x.ID)
-            @Html.LabelFor(x=>x.Category)
+            <b>@Html.LabelFor(x => x.Category):</b>
             @Html.DisplayFor(x=>x.Category,new {@class="from-control"}) 
         </div>
         <div>
-            @Html.LabelFor(x => x.Description)
+            <b>@Html.LabelFor(x => x.Description):</b>
             @Html.DisplayFor(x => x.Description, new { @class = "from-control" })
 
         </div>
